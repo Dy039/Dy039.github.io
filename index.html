@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Portfolio | Yuet Dong</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1c1c1e;
+            --accent-color: #2c3e50;
+            --border-color: #e5e5ea;
+            --code-bg: #f2f2f7;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e5e5ea;
+                --accent-color: #34495e;
+                --border-color: #2c2c2e;
+                --code-bg: #1c1c1e;
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        section {
+            margin-bottom: 5rem;
+            scroll-margin-top: 5rem;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-color);
+            letter-spacing: -0.5px;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-top: 3rem; }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8e8e93;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .essay-box {
+            background-color: var(--code-bg);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .revision-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .revision-table th, .revision-table td {
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .revision-table th {
+            background-color: var(--code-bg);
+        }
+
+        .prompt-quote {
+            font-style: italic;
+            color: #636366;
+            border-left: 2px solid var(--border-color);
+            padding-left: 1rem;
+            margin: 1rem 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: #8e8e93;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">YD // Portfolio</div>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#highlights">Highlights</a>
+                <a href="#essays">Essays</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ABOUT SECTION -->
+        <section id="about">
+            <h1>Yuet Dong</h1>
+            <div class="subtitle">Scholarly Narrative & Philosophy</div>
+            <p>Welcome! I am a student-scholar operating at the unique intersection of rigorous quantitative logic and abstract conceptual inquiry. Driven by a deep fascination with both advanced mathematics and theoretical philosophy, my academic journey is defined by a quest to understand the underlying structures of our world—whether they are governed by statistical mechanics or classical ethics.</p>
+            <p>Navigating a highly rigorous international curriculum has allowed me to treat language not merely as a tool for basic communication, but as a precise instrument for positioning complex ideas. I believe that true intellectual growth happens when we use the absolute clarity of mathematical frameworks to analyze the nuanced, humanistic questions of philosophy.</p>
+        </section>
+
+        <!-- HIGHLIGHTS SECTION -->
+        <section id="highlights">
+            <h2>Highlights at HFI</h2>
+            
+            <div class="highlight-card">
+                <h3>🏆 International College Math Competition (ICMC)</h3>
+                <p><strong>Role:</strong> Founder & Tournament Director</p>
+                <p>Pioneered and executed a self-held mathematics competition that successfully united 10 top-ranked international schools across China, coordinating logistics, test design, and operations for over 80 active participants.</p>
+            </div>
+
+            <div class="highlight-card">
+                <h3>🔬 Theoretical Physics Research: The 6-Vertex Model</h3>
+                <p><strong>Focus:</strong> Statistical Mechanics & Mathematical Physics</p>
+                <p>Conducted deep-dive academic research into the 6-vertex model, exploring its intersections with knot theory, statistical mechanics, and higher-level calculus to analyze complex phase transitions and lattice models.</p>
+            </div>
+
+            <div class="highlight-card">
+                <h3>💻 HPC Workload Management & Optimization</h3>
+                <p><strong>Output:</strong> Authored IEEE Research Paper</p>
+                <p>Authored a technical research paper focused on managing High-Performance Computing (HPC) workloads to significantly reduce hardware energy consumption via intelligent system administration behavior patterns.</p>
+            </div>
+        </section>
+
+        <!-- ESSAYS SECTION -->
+        <section id="essays">
+            <h2>AP Lang Writing Portfolio</h2>
+            
+            <!-- ESSAY 1 -->
+            <h3>1. Rhetorical Analysis Essay</h3>
+            <div class="prompt-quote">
+                <strong>Prompt:</strong> Analyze the rhetorical choices Gandhi makes in his 1930 letter to Viceroy Lord Irwin to present his case against Britain's colonial monopoly on salt.
+            </div>
+            <div class="essay-box">
+                <h4>The Crucible of Conscience: Rhetorical Strategies in Gandhi’s Letter</h4>
+                <p>In his 1930 letter to Viceroy Lord Irwin, Mohandas Gandhi argues that British colonial rule operates as a devastating "curse" that systematically erodes India economically, politically, and morally. Gandhi constructs his argument by establishing a spiritual and moral framework to find shared ground with his recipient, utilizing conditional "if-then" structures to frame the impending conflict as a choice for Britain, and adopting a humble, service-oriented tone to solidify his selfless credibility...</p>
+            </div>
+            
+            <h4>Revision Deep Dive</h4>
+            <table class="revision-table">
+                <tr>
+                    <th>Before Revision</th>
+                    <th>After Revision</th>
+                    <th>Rhetorical Commentary</th>
+                </tr>
+                <tr>
+                    <td>The effect of this two-choice situation does not sound as strong as it should be, but it left the burden of responsibility solely on Lord Irwin.</td>
+                    <td>This binary framing strips the colonial administration of strategic ambiguity, placing the entire burden of choice and subsequent escalation squarely on Lord Irwin’s shoulders.</td>
+                    <td>The original draft misidentified Gandhi's restraint as weakness. The revision properly evaluates how his conditional logic serves to trap his opponent strategically.</td>
+                </tr>
+            </table>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 3rem 0;">
+
+            <!-- ESSAY 2 -->
+            <h3>2. Argument Essay</h3>
+            <div class="prompt-quote">
+                <strong>Prompt:</strong> Formulate an argument on whether universities should implement a temporary, mandatory phone ban for incoming freshmen during orientation.
+            </div>
+            <div class="essay-box">
+                <h4>Unplugging to Connect: The Case for a Temporary Orientation Phone Ban</h4>
+                <p>Have you ever glanced at your screen-time report and felt an underlying sense of unease regarding the hours spent mindlessly scrolling? For many college students, that feeling is an inescapable daily reality. While some critics worry that a temporary phone ban might counterproductively cut students off from vital family lifelines, a brief two-day restriction at the absolute start of the college experience provides something far more invaluable: it systematically curbs unhealthy digital dependence and actively fosters deeper human connections...</p>
+            </div>
+
+            <h4>Revision Deep Dive</h4>
+            <table class="revision-table">
+                <tr>
+                    <th>Before Revision</th>
+                    <th>After Revision</th>
+                    <th>Rhetorical Commentary</th>
+                </tr>
+                <tr>
+                    <td>Problems caused by phone could be demonstrated by a myriad of evidences... Without a break from constant digital distractions, students' academic careers could be derailed...</td>
+                    <td>The structural problems catalyzed by excessive phone usage are demonstrated by a wealth of empirical data... Without a deliberate break from constant digital notifications, students' academic trajectories could be derailed...</td>
+                    <td>Corrected the non-count noun usage of "evidences" to "empirical data" and updated vocabulary selections to shift the text into an appropriate, authoritative academic register.</td>
+                </tr>
+            </table>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 3rem 0;">
+
+            <!-- ESSAY 3 -->
+            <h3>3. Synthesis Essay</h3>
+            <div class="prompt-quote">
+                <strong>Prompt:</strong> Evaluate the extent to which national governments should reallocate space exploration funding toward urgent domestic priorities.
+            </div>
+            <div class="essay-box">
+                <h4>Reanchoring the Cosmos: Why Domestic Welfare Must Precede Space Exploration</h4>
+                <p>Space exploration has served as a central motif of human technological advancement since the foundational invention of the rocket. In an era increasingly plagued by terrestrial crises, however, this cosmic ambition forces a challenging question: can society truly afford to overlook the significant cost of the cosmos? Although proponents argue that space exploration projects are necessary to expand our fundamental understanding of the solar system, concerted efforts to reevaluate and optimize the massive annual space budget are essential...</p>
+            </div>
+
+            <h4>Revision Deep Dive</h4>
+            <table class="revision-table">
+                <tr>
+                    <th>Before Revision</th>
+                    <th>After Revision</th>
+                    <th>Rhetorical Commentary</th>
+                </tr>
+                <tr>
+                    <td>especially the hearth disease and stroke, fell by '40% and 51%' respectively... Just as what Mclean Margaret articulates...</td>
+                    <td>with deaths from heart disease and stroke falling by 40% and 51% respectively... As bioethicist Margaret McLean articulates...</td>
+                    <td>Fixed critical typos ("hearth disease") and properly ordered and capitalized the source author's name, while adding her specific title to strengthen the essay's synthesis integration.</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Yuet Dong. Formatted for AP English Language and Composition Portfolio Requirements.</p>
+    </footer>
+
+</body>
+</html>
