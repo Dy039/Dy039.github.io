@@ -3,273 +3,487 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic Portfolio | Yuet Dong</title>
+    <title>Yuet Dong | Academic Portfolio</title>
     <style>
+        /* Core Variables & Reset */
         :root {
-            --bg-color: #ffffff;
-            --text-color: #1c1c1e;
-            --accent-color: #2c3e50;
-            --border-color: #e5e5ea;
-            --code-bg: #f2f2f7;
+            --bg-primary: #fdfdfd;
+            --bg-secondary: #f7f7f9;
+            --text-main: #2d2d2d;
+            --text-muted: #6c757d;
+            --accent: #0f172a;
+            --border: #eaedf1;
+            --transition-speed: 0.4s;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #121212;
-                --text-color: #e5e5ea;
-                --accent-color: #34495e;
-                --border-color: #2c2c2e;
-                --code-bg: #1c1c1e;
-            }
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
         header {
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
+            position: fixed;
             top: 0;
-            background-color: var(--bg-color);
+            width: 100%;
+            background: rgba(253, 253, 253, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
             z-index: 1000;
+            transition: all var(--transition-speed) ease;
         }
 
         .nav-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2rem;
         }
 
         .logo {
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: -0.5px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         nav a {
-            color: var(--text-color);
+            color: var(--text-main);
             text-decoration: none;
-            margin-left: 1.5rem;
-            font-size: 0.95rem;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
         }
 
-        nav a:hover {
-            opacity: 0.7;
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
         }
 
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #fdfdfd 0%, #f0f4f8 100%);
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content Layout */
         main {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
         }
 
         section {
-            margin-bottom: 5rem;
-            scroll-margin-top: 5rem;
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border);
         }
 
-        h1, h2, h3 {
-            color: var(--text-color);
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
             letter-spacing: -0.5px;
+            text-align: center;
         }
 
-        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        h2 { font-size: 1.8rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-top: 3rem; }
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #8e8e93;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Highlight Cards */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--bg-primary);
+            background: var(--accent);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+
+        /* Essay Layout & Interactivity */
+        .essay-container {
+            margin-bottom: 4rem;
+        }
+
+        .essay-prompt {
+            font-style: italic;
+            color: var(--text-muted);
+            border-left: 3px solid var(--text-muted);
+            padding-left: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .highlight-card {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
+        .essay-text {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 12px;
             margin-bottom: 1.5rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        .essay-box {
-            background-color: var(--code-bg);
-            border-left: 4px solid var(--accent-color);
-            padding: 1.5rem;
-            border-radius: 0 8px 8px 0;
-            margin: 1.5rem 0;
+        .essay-text h4 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        /* Interactive Accordion for Revisions */
+        .accordion-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-btn:hover {
+            background: #1e293b;
+        }
+
+        .accordion-btn::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-btn.active::after {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+            transition: max-height 1s ease-in-out;
         }
 
         .revision-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1.5rem 0;
+            margin: 0;
         }
 
         .revision-table th, .revision-table td {
-            border: 1px solid var(--border-color);
-            padding: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
             text-align: left;
             vertical-align: top;
         }
 
         .revision-table th {
-            background-color: var(--code-bg);
+            background: var(--bg-secondary);
+            font-weight: 600;
+            width: 33%;
         }
 
-        .prompt-quote {
-            font-style: italic;
-            color: #636366;
-            border-left: 2px solid var(--border-color);
-            padding-left: 1rem;
-            margin: 1rem 0;
-        }
-
+        /* Footer */
         footer {
             text-align: center;
-            padding: 2rem;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.85rem;
-            color: #8e8e93;
+            padding: 3rem;
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
+    <!-- STICKY HEADER -->
     <header>
         <div class="nav-container">
-            <div class="logo">YD // Portfolio</div>
+            <div class="logo">YD.</div>
             <nav>
                 <a href="#about">About</a>
                 <a href="#highlights">Highlights</a>
-                <a href="#essays">Essays</a>
+                <a href="#essays">Portfolio</a>
             </nav>
         </div>
     </header>
 
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <h1>Yuet Dong</h1>
+        <p>A student-scholar navigating the intersection of rigorous quantitative logic and abstract philosophical inquiry at HFI.</p>
+    </section>
+
     <main>
         <!-- ABOUT SECTION -->
-        <section id="about">
-            <h1>Yuet Dong</h1>
-            <div class="subtitle">Scholarly Narrative & Philosophy</div>
-            <p>Welcome! I am a student-scholar operating at the unique intersection of rigorous quantitative logic and abstract conceptual inquiry. Driven by a deep fascination with both advanced mathematics and theoretical philosophy, my academic journey is defined by a quest to understand the underlying structures of our world—whether they are governed by statistical mechanics or classical ethics.</p>
-            <p>Navigating a highly rigorous international curriculum has allowed me to treat language not merely as a tool for basic communication, but as a precise instrument for positioning complex ideas. I believe that true intellectual growth happens when we use the absolute clarity of mathematical frameworks to analyze the nuanced, humanistic questions of philosophy.</p>
+        <section id="about" class="reveal">
+            <h2 class="section-title">Scholarly Narrative</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Navigating a highly rigorous international curriculum has allowed me to treat language not merely as a tool for basic communication, but as a precise instrument for positioning complex ideas. I believe that true intellectual growth happens when we use the absolute clarity of mathematical frameworks to analyze the nuanced, humanistic questions of philosophy.</p>
+            <p style="font-size: 1.1rem;">Driven by a deep fascination with both advanced mathematics and theoretical philosophy, my academic journey is defined by a quest to understand the underlying structures of our world—whether they are governed by statistical mechanics or classical ethics.</p>
         </section>
 
         <!-- HIGHLIGHTS SECTION -->
-        <section id="highlights">
-            <h2>Highlights at HFI</h2>
-            
-            <div class="highlight-card">
-                <h3>🏆 International College Math Competition (ICMC)</h3>
-                <p><strong>Role:</strong> Founder & Tournament Director</p>
-                <p>Pioneered and executed a self-held mathematics competition that successfully united 10 top-ranked international schools across China, coordinating logistics, test design, and operations for over 80 active participants.</p>
-            </div>
-
-            <div class="highlight-card">
-                <h3>🔬 Theoretical Physics Research: The 6-Vertex Model</h3>
-                <p><strong>Focus:</strong> Statistical Mechanics & Mathematical Physics</p>
-                <p>Conducted deep-dive academic research into the 6-vertex model, exploring its intersections with knot theory, statistical mechanics, and higher-level calculus to analyze complex phase transitions and lattice models.</p>
-            </div>
-
-            <div class="highlight-card">
-                <h3>💻 HPC Workload Management & Optimization</h3>
-                <p><strong>Output:</strong> Authored IEEE Research Paper</p>
-                <p>Authored a technical research paper focused on managing High-Performance Computing (HPC) workloads to significantly reduce hardware energy consumption via intelligent system administration behavior patterns.</p>
+        <section id="highlights" class="reveal">
+            <h2 class="section-title">Highlights at HFI</h2>
+            <div class="grid-container">
+                <!-- Card 1 -->
+                <div class="card">
+                    <span class="tag">Leadership</span>
+                    <h3>ICMC Founder</h3>
+                    <p>Pioneered a mathematics competition uniting 10 top-ranked international schools, coordinating logistics and test design for over 80 active participants.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="card">
+                    <span class="tag">Physics Research</span>
+                    <h3>The 6-Vertex Model</h3>
+                    <p>Conducted academic research into the 6-vertex model, exploring its intersections with knot theory, statistical mechanics, and higher-level calculus.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="card">
+                    <span class="tag">Published Paper</span>
+                    <h3>IEEE Energy Optimization</h3>
+                    <p>Authored a technical research paper focused on managing HPC workloads to significantly reduce hardware energy consumption via Linux system administration.</p>
+                </div>
             </div>
         </section>
 
         <!-- ESSAYS SECTION -->
-        <section id="essays">
-            <h2>AP Lang Writing Portfolio</h2>
-            
-            <!-- ESSAY 1 -->
-            <h3>1. Rhetorical Analysis Essay</h3>
-            <div class="prompt-quote">
-                <strong>Prompt:</strong> Analyze the rhetorical choices Gandhi makes in his 1930 letter to Viceroy Lord Irwin to present his case against Britain's colonial monopoly on salt.
-            </div>
-            <div class="essay-box">
-                <h4>The Crucible of Conscience: Rhetorical Strategies in Gandhi’s Letter</h4>
-                <p>In his 1930 letter to Viceroy Lord Irwin, Mohandas Gandhi argues that British colonial rule operates as a devastating "curse" that systematically erodes India economically, politically, and morally. Gandhi constructs his argument by establishing a spiritual and moral framework to find shared ground with his recipient, utilizing conditional "if-then" structures to frame the impending conflict as a choice for Britain, and adopting a humble, service-oriented tone to solidify his selfless credibility...</p>
-            </div>
-            
-            <h4>Revision Deep Dive</h4>
-            <table class="revision-table">
-                <tr>
-                    <th>Before Revision</th>
-                    <th>After Revision</th>
-                    <th>Rhetorical Commentary</th>
-                </tr>
-                <tr>
-                    <td>The effect of this two-choice situation does not sound as strong as it should be, but it left the burden of responsibility solely on Lord Irwin.</td>
-                    <td>This binary framing strips the colonial administration of strategic ambiguity, placing the entire burden of choice and subsequent escalation squarely on Lord Irwin’s shoulders.</td>
-                    <td>The original draft misidentified Gandhi's restraint as weakness. The revision properly evaluates how his conditional logic serves to trap his opponent strategically.</td>
-                </tr>
-            </table>
+        <section id="essays" class="reveal">
+            <h2 class="section-title">AP Lang Writing Portfolio</h2>
 
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 3rem 0;">
+            <!-- ESSAY 1 -->
+            <div class="essay-container reveal">
+                <h3>1. Rhetorical Analysis</h3>
+                <div class="essay-prompt">
+                    <strong>Prompt:</strong> Analyze the rhetorical choices Gandhi makes in his 1930 letter to Viceroy Lord Irwin to present his case against Britain's colonial monopoly on salt.
+                </div>
+                <div class="essay-text">
+                    <h4>The Crucible of Conscience: Rhetorical Strategies in Gandhi’s Letter</h4>
+                    <p>In his 1930 letter to Viceroy Lord Irwin, Mohandas Gandhi argues that British colonial rule operates as a devastating "curse" that systematically erodes India economically, politically, and morally. Gandhi constructs his argument by establishing a spiritual and moral framework to find shared ground with his recipient, utilizing conditional "if-then" structures to frame the impending conflict as a choice for Britain, and adopting a humble, service-oriented tone to solidify his selfless credibility...</p>
+                </div>
+                
+                <!-- Accordion Toggle -->
+                <button class="accordion-btn">View Revision Showcase</button>
+                <div class="accordion-content">
+                    <table class="revision-table">
+                        <tr>
+                            <th>Before Revision</th>
+                            <th>After Revision</th>
+                            <th>Rhetorical Commentary</th>
+                        </tr>
+                        <tr>
+                            <td>The effect of this two-choice situation does not sound as strong as it should be, but it left the burden of responsibility solely on Lord Irwin.</td>
+                            <td>This binary framing strips the colonial administration of strategic ambiguity, placing the entire burden of choice and subsequent escalation squarely on Lord Irwin’s shoulders.</td>
+                            <td>The original draft misidentified Gandhi's restraint as weakness. The revision properly evaluates how his conditional logic serves to trap his opponent strategically.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
             <!-- ESSAY 2 -->
-            <h3>2. Argument Essay</h3>
-            <div class="prompt-quote">
-                <strong>Prompt:</strong> Formulate an argument on whether universities should implement a temporary, mandatory phone ban for incoming freshmen during orientation.
+            <div class="essay-container reveal">
+                <h3>2. Argument Essay</h3>
+                <div class="essay-prompt">
+                    <strong>Prompt:</strong> Formulate an argument on whether universities should implement a temporary, mandatory phone ban for incoming freshmen during orientation.
+                </div>
+                <div class="essay-text">
+                    <h4>Unplugging to Connect: The Case for a Temporary Orientation Phone Ban</h4>
+                    <p>Have you ever glanced at your screen-time report and felt an underlying sense of unease regarding the hours spent mindlessly scrolling? For many college students, that feeling is an inescapable daily reality. While some critics worry that a temporary phone ban might counterproductively cut students off from vital family lifelines, a brief two-day restriction at the absolute start of the college experience systematically curbs unhealthy digital dependence and actively fosters deeper human connections...</p>
+                </div>
+                
+                <!-- Accordion Toggle -->
+                <button class="accordion-btn">View Revision Showcase</button>
+                <div class="accordion-content">
+                    <table class="revision-table">
+                        <tr>
+                            <th>Before Revision</th>
+                            <th>After Revision</th>
+                            <th>Rhetorical Commentary</th>
+                        </tr>
+                        <tr>
+                            <td>Problems caused by phone could be demonstrated by a myriad of evidences... Without a break from constant digital distractions, students' academic careers could be derailed...</td>
+                            <td>The structural problems catalyzed by excessive phone usage are demonstrated by a wealth of empirical data... Without a deliberate break from constant digital notifications, students' academic trajectories could be derailed...</td>
+                            <td>Corrected the non-count noun usage of "evidences" to "empirical data" and updated vocabulary selections to shift the text into an authoritative academic register.</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="essay-box">
-                <h4>Unplugging to Connect: The Case for a Temporary Orientation Phone Ban</h4>
-                <p>Have you ever glanced at your screen-time report and felt an underlying sense of unease regarding the hours spent mindlessly scrolling? For many college students, that feeling is an inescapable daily reality. While some critics worry that a temporary phone ban might counterproductively cut students off from vital family lifelines, a brief two-day restriction at the absolute start of the college experience provides something far more invaluable: it systematically curbs unhealthy digital dependence and actively fosters deeper human connections...</p>
-            </div>
-
-            <h4>Revision Deep Dive</h4>
-            <table class="revision-table">
-                <tr>
-                    <th>Before Revision</th>
-                    <th>After Revision</th>
-                    <th>Rhetorical Commentary</th>
-                </tr>
-                <tr>
-                    <td>Problems caused by phone could be demonstrated by a myriad of evidences... Without a break from constant digital distractions, students' academic careers could be derailed...</td>
-                    <td>The structural problems catalyzed by excessive phone usage are demonstrated by a wealth of empirical data... Without a deliberate break from constant digital notifications, students' academic trajectories could be derailed...</td>
-                    <td>Corrected the non-count noun usage of "evidences" to "empirical data" and updated vocabulary selections to shift the text into an appropriate, authoritative academic register.</td>
-                </tr>
-            </table>
-
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 3rem 0;">
 
             <!-- ESSAY 3 -->
-            <h3>3. Synthesis Essay</h3>
-            <div class="prompt-quote">
-                <strong>Prompt:</strong> Evaluate the extent to which national governments should reallocate space exploration funding toward urgent domestic priorities.
-            </div>
-            <div class="essay-box">
-                <h4>Reanchoring the Cosmos: Why Domestic Welfare Must Precede Space Exploration</h4>
-                <p>Space exploration has served as a central motif of human technological advancement since the foundational invention of the rocket. In an era increasingly plagued by terrestrial crises, however, this cosmic ambition forces a challenging question: can society truly afford to overlook the significant cost of the cosmos? Although proponents argue that space exploration projects are necessary to expand our fundamental understanding of the solar system, concerted efforts to reevaluate and optimize the massive annual space budget are essential...</p>
+            <div class="essay-container reveal">
+                <h3>3. Synthesis Essay</h3>
+                <div class="essay-prompt">
+                    <strong>Prompt:</strong> Evaluate the extent to which national governments should reallocate space exploration funding toward urgent domestic priorities.
+                </div>
+                <div class="essay-text">
+                    <h4>Reanchoring the Cosmos: Why Domestic Welfare Must Precede Space Exploration</h4>
+                    <p>Space exploration has served as a central motif of human technological advancement since the foundational invention of the rocket. In an era increasingly plagued by terrestrial crises, however, this cosmic ambition forces a challenging question: can society truly afford to overlook the significant cost of the cosmos? Although proponents argue that space exploration projects are necessary to expand our fundamental understanding of the solar system, concerted efforts to reevaluate and optimize the massive annual space budget are essential...</p>
+                </div>
+                
+                <!-- Accordion Toggle -->
+                <button class="accordion-btn">View Revision Showcase</button>
+                <div class="accordion-content">
+                    <table class="revision-table">
+                        <tr>
+                            <th>Before Revision</th>
+                            <th>After Revision</th>
+                            <th>Rhetorical Commentary</th>
+                        </tr>
+                        <tr>
+                            <td>especially the hearth disease and stroke, fell by '40% and 51%' respectively... Just as what Mclean Margaret articulates...</td>
+                            <td>with deaths from heart disease and stroke falling by 40% and 51% respectively... As bioethicist Margaret McLean articulates...</td>
+                            <td>Fixed critical typos ("hearth disease") and properly ordered and capitalized the source author's name, while adding her specific title to strengthen the essay's synthesis integration.</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
-            <h4>Revision Deep Dive</h4>
-            <table class="revision-table">
-                <tr>
-                    <th>Before Revision</th>
-                    <th>After Revision</th>
-                    <th>Rhetorical Commentary</th>
-                </tr>
-                <tr>
-                    <td>especially the hearth disease and stroke, fell by '40% and 51%' respectively... Just as what Mclean Margaret articulates...</td>
-                    <td>with deaths from heart disease and stroke falling by 40% and 51% respectively... As bioethicist Margaret McLean articulates...</td>
-                    <td>Fixed critical typos ("hearth disease") and properly ordered and capitalized the source author's name, while adding her specific title to strengthen the essay's synthesis integration.</td>
-                </tr>
-            </table>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Yuet Dong. Formatted for AP English Language and Composition Portfolio Requirements.</p>
+        <p>&copy; 2026 Yuet Dong. AP English Language and Composition Portfolio.</p>
     </footer>
 
+    <!-- INTERACTIVITY SCRIPT -->
+    <script>
+        // 1. Scroll Reveal Animation Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger once on load
+
+        // 2. Accordion Logic for Revisions
+        var acc = document.getElementsByClassName("accordion-btn");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.classList.contains("active")) {
+                    content.classList.remove("active");
+                } else {
+                    content.classList.add("active");
+                }
+            });
+        }
+    </script>
 </body>
 </html>
