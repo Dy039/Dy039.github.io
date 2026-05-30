@@ -130,6 +130,7 @@
         /* === SPA ROUTING === */
         main {
             padding-top: 120px;
+            padding-bottom: 80px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -146,12 +147,12 @@
 
         /* === TYPOGRAPHY === */
         h1.glitch { font-size: 4rem; font-weight: 900; margin-bottom: 1rem; }
-        .subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
+        .subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; line-height: 1.6; }
         .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem; border-bottom: 2px solid var(--border-glass); padding-bottom: 1rem;}
 
         /* === HOME GRID === */
         .hero-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .hero-image { width: 100%; height: 400px; border-radius: 24px; object-fit: cover; border: 1px solid var(--border-glass); }
+        .hero-image { width: 100%; height: 400px; border-radius: 24px; object-fit: cover; border: 1px solid var(--border-glass); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
         .badge-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2rem; }
         .badge {
             background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);
@@ -159,6 +160,23 @@
             backdrop-filter: blur(10px); transition: var(--transition-smooth);
         }
         .badge:hover { background: rgba(255,255,255,0.15); transform: translateY(-3px); border-color: var(--accent-cyan); }
+
+        /* === WHO AM I SECTION === */
+        .bio-glass-panel {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .bio-glass-panel p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #e5e7eb;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
 
         /* === ACADEMICS CARDS === */
         .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
@@ -169,7 +187,9 @@
         .tilt-card-inner { padding: 2rem; transform: translateZ(30px); }
         .card-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid var(--border-glass); }
         .tilt-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-cyan); }
-        .tilt-card p { font-size: 0.95rem; color: var(--text-muted); }
+        .tilt-card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+        .tag-row { margin-bottom: 1rem; }
+        .tag { font-size: 0.7rem; padding: 4px 10px; background: rgba(139,92,246,0.2); color: #c4b5fd; border-radius: 10px; text-transform: uppercase; margin-right: 5px; }
 
         /* === PORTFOLIO ESSAYS & HOVER REVISIONS === */
         .tab-controls { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 1rem; }
@@ -181,10 +201,10 @@
         
         .essay-body {
             background: var(--bg-glass); border: 1px solid var(--border-glass);
-            padding: 3rem; border-radius: 24px; font-size: 1.05rem; line-height: 1.8;
+            padding: 4rem; border-radius: 24px; font-size: 1.1rem; line-height: 1.9;
             color: #d1d5db; text-align: justify; box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
         }
-        .essay-body p { margin-bottom: 1.5rem; }
+        .essay-body p { margin-bottom: 1.8rem; text-indent: 2rem; }
         .citation { color: var(--accent-cyan); font-size: 0.8em; vertical-align: super; }
 
         /* Inline Revision Highlights */
@@ -203,44 +223,26 @@
 
         /* Floating Tooltip Window */
         #revision-tooltip {
-            position: fixed;
-            width: 380px;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--accent-pink);
-            border-radius: 12px;
-            padding: 1.5rem;
-            color: white;
-            pointer-events: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.2s, transform 0.2s;
-            z-index: 10000;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-            display: none;
+            position: fixed; width: 400px; background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px); border: 1px solid var(--accent-pink);
+            border-radius: 12px; padding: 1.5rem; color: white; pointer-events: none;
+            opacity: 0; transform: translateY(10px); transition: opacity 0.2s, transform 0.2s;
+            z-index: 10000; box-shadow: 0 20px 40px rgba(0,0,0,0.7); display: none;
         }
         #revision-tooltip.visible { display: block; opacity: 1; transform: translateY(0); }
         
         .tooltip-header {
-            background: var(--accent-pink);
-            color: white; font-size: 0.75rem; font-weight: 800;
-            padding: 4px 10px; border-radius: 12px;
-            text-transform: uppercase; display: inline-block; margin-bottom: 12px;
+            background: var(--accent-pink); color: white; font-size: 0.75rem; font-weight: 800;
+            padding: 4px 10px; border-radius: 12px; text-transform: uppercase; display: inline-block; margin-bottom: 12px;
         }
-        .tooltip-before {
-            font-size: 0.95rem; color: #fca5a5;
-            text-decoration: line-through; margin-bottom: 12px; font-style: italic;
-        }
-        .tooltip-commentary {
-            font-size: 0.95rem; color: #e2e8f0;
-            border-left: 3px solid var(--accent-cyan); padding-left: 12px;
-        }
+        .tooltip-before { font-size: 0.95rem; color: #fca5a5; text-decoration: line-through; margin-bottom: 15px; font-style: italic; line-height: 1.5; }
+        .tooltip-commentary { font-size: 0.95rem; color: #e2e8f0; border-left: 3px solid var(--accent-cyan); padding-left: 12px; line-height: 1.5; }
 
         /* === ARCADE === */
         .arcade-container { background: #09090b; border: 2px solid var(--accent-pink); border-radius: 24px; padding: 3rem; text-align: center; }
         #game-area { width: 100%; height: 400px; background: #000; border-radius: 12px; margin-top: 2rem; position: relative; overflow: hidden; display: none; border: 1px solid var(--border-glass); }
         .target { position: absolute; width: 45px; height: 45px; background: radial-gradient(circle, var(--accent-cyan), var(--accent-purple)); border-radius: 50%; box-shadow: 0 0 20px var(--accent-cyan); transition: transform 0.1s; }
-        .btn-neon { background: transparent; border: 2px solid var(--accent-cyan); color: var(--accent-cyan); padding: 1rem 3rem; font-size: 1.2rem; font-weight: 800; border-radius: 50px; transition: 0.3s; margin-top: 1rem; }
+        .btn-neon { background: transparent; border: 2px solid var(--accent-cyan); color: var(--accent-cyan); padding: 1rem 3rem; font-size: 1.2rem; font-weight: 800; border-radius: 50px; transition: 0.3s; margin-top: 1rem; cursor: pointer; }
         .btn-neon:hover { background: var(--accent-cyan); color: #000; box-shadow: 0 0 30px rgba(6, 182, 212, 0.8); }
 
     </style>
@@ -264,7 +266,7 @@
         <div class="logo">YD // 2026</div>
         <nav>
             <a href="#" class="nav-link active" onclick="navigate('home')">Home</a>
-            <a href="#" class="nav-link" onclick="navigate('academics')">Academics</a>
+            <a href="#" class="nav-link" onclick="navigate('whoami')">Who Am I</a>
             <a href="#" class="nav-link" onclick="navigate('portfolio')">Portfolio</a>
             <a href="#" class="nav-link" onclick="navigate('arcade')">Arcade</a>
         </nav>
@@ -276,7 +278,7 @@
             <div class="hero-layout">
                 <div>
                     <h1 class="glitch" id="typewriter"></h1>
-                    <p class="subtitle">Operating at the intersection of rigorous quantitative logic, statistical mechanics, and abstract conceptual philosophy at HFI.</p>
+                    <p class="subtitle">Operating at the intersection of rigorous quantitative logic, statistical mechanics, and abstract conceptual philosophy.</p>
                     <div class="badge-grid">
                         <span class="badge">🧠 Math Philo Major</span>
                         <span class="badge">💻 Linux (Arch/Fedora)</span>
@@ -292,13 +294,22 @@
             </div>
         </section>
 
-        <!-- ================= VIEW: ACADEMICS ================= -->
-        <section id="view-academics" class="page">
-            <h2 class="section-title">Academic Showcase</h2>
+        <!-- ================= VIEW: WHO AM I ================= -->
+        <section id="view-whoami" class="page">
+            <h2 class="section-title">Who Am I</h2>
+            
+            <div class="bio-glass-panel">
+                <p>Hello! I am Yuet (Danny) Dong, currently an 11th-grade student at the International Department of South China Normal University Affiliated High School (HFI) based in Guangzhou. My academic trajectory is defined by a deep commitment to pursuing a future university major in Mathematics and Philosophy. I spend my late nights in the dorms navigating the rigorous intersection of theoretical physics, statistical mechanics, and advanced calculus—skills I'll soon be taking with me to the Chicago Summer Immersion program.</p>
+                <p>Outside of my heavy coursework (which currently includes preparing for 9 AP exams), my intellectual curiosity takes many forms. I am an active competitor in major math tournaments like HMMT and SMT, an alumnus of the highly rigorous 2025 Yau Mathcamp, and the founder of the International College Math Competition (ICMC) which united over 80 participants across 10 top-tier schools.</p>
+                <p>On the technical front, I am a dedicated Linux enthusiast. Whether I'm tweaking Arch, Fedora, or Debian distributions across my Thinkbook 14+ or my Pixelbook Go, I am always optimizing systems. This passion led me to author an IEEE-accepted research paper focused on managing HPC workloads to reduce hardware energy consumption. But I am not just a researcher; I'm an avid gamer grinding <em>Slay the Spire</em>, a massive Formula 1 fan cheering for Max Verstappen, and a passionate supporter of both Bayern Munich and Guangzhou FC.</p>
+            </div>
+
+            <h3 style="font-size: 1.8rem; color: var(--accent-cyan); margin-bottom: 1.5rem;">Academic & Leadership Milestones</h3>
             <div class="card-grid">
                 <div class="tilt-card">
                     <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800&q=80" alt="Physics" class="card-img">
                     <div class="tilt-card-inner">
+                        <div class="tag-row"><span class="tag">Physics</span><span class="tag">Math</span></div>
                         <h3>The 6-Vertex Model</h3>
                         <p>Independent research dissecting the physics of the 6-vertex model, bridging complex phase transitions, knot theory, and higher-level calculus.</p>
                     </div>
@@ -306,13 +317,15 @@
                 <div class="tilt-card">
                     <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" alt="Code" class="card-img">
                     <div class="tilt-card-inner">
+                        <div class="tag-row"><span class="tag">IEEE</span><span class="tag">Linux</span></div>
                         <h3>HPC Energy Optimization</h3>
-                        <p>Authored a technical IEEE research paper on managing High-Performance Computing workloads to aggressively reduce hardware energy consumption on Linux.</p>
+                        <p>Authored a technical IEEE research paper on managing High-Performance Computing workloads to aggressively reduce hardware energy consumption.</p>
                     </div>
                 </div>
                 <div class="tilt-card">
                     <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80" alt="Math" class="card-img">
                     <div class="tilt-card-inner">
+                        <div class="tag-row"><span class="tag">Leadership</span><span class="tag">HMMT</span></div>
                         <h3>Founder of the ICMC</h3>
                         <p>Founded and managed the International College Math Competition, successfully uniting 10 top-ranked schools and coordinating over 80 participants.</p>
                     </div>
@@ -323,37 +336,53 @@
         <!-- ================= VIEW: PORTFOLIO ================= -->
         <section id="view-portfolio" class="page">
             <h2 class="section-title">AP Lang Writing Portfolio</h2>
-            <p style="color: var(--accent-pink); margin-bottom: 2rem; font-style: italic;">Hover your cursor over the highlighted text in the essays to view my revision process.</p>
+            <p style="color: var(--accent-pink); margin-bottom: 2rem; font-style: italic; font-size: 1.1rem;">* Hover your cursor over the highlighted text in the essays below to view my revision and drafting process.</p>
             
             <div class="tab-controls">
                 <button class="tab-btn active" onclick="openTab('essay1')">1. Rhetorical Analysis</button>
-                <button class="tab-btn" onclick="openTab('essay2')">2. Argument</button>
-                <button class="tab-btn" onclick="openTab('essay3')">3. Synthesis</button>
+                <button class="tab-btn" onclick="openTab('essay2')">2. Argument Essay</button>
+                <button class="tab-btn" onclick="openTab('essay3')">3. Synthesis Essay</button>
             </div>
 
             <!-- Tab 1: Gandhi -->
             <div id="essay1" class="tab-content active">
                 <div class="essay-body">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: white;">The Crucible of Conscience: Rhetorical Strategies in Gandhi’s Letter</h3>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: white;">The Crucible of Conscience: Rhetorical Strategies in Gandhi’s Letter</h3>
                     <p>In his 1930 letter to Viceroy Lord Irwin, Mohandas Gandhi, the leader of India’s nonviolent independence movement, argues that British colonial rule operates as a devastating "curse" that systematically erodes India economically, politically, and morally<span class="citation">[cite: 2]</span>. Gandhi constructs his argument by establishing a spiritual and moral framework to find shared ground with his recipient, utilizing conditional "if-then" structures to frame the impending conflict as a choice for Britain, and adopting a humble, service-oriented tone to solidify his selfless credibility<span class="citation">[cite: 2]</span>. Ultimately, Gandhi seeks to warn Lord Irwin of the upcoming Salt March not as an act of aggression, but as a necessary, moral response to institutional injustice, forcing his audience to reconsider the legitimacy of imperial rule<span class="citation">[cite: 2]</span>.</p>
                     
+                    <p>Gandhi begins by establishing a rigorous moral and religious framework, intentionally elevating the political dispute into an appeal to Lord Irwin's personal conscience<span class="citation">[cite: 2]</span>. He introduces this by declaring his "ambition is no less than to convert the British people through non-violence," immediately shifting the geopolitical conflict onto spiritual terrain<span class="citation">[cite: 2]</span>. The word "conversion" is a deliberate, pathos-driven choice; it subtly implies that Britain is currently in a state of moral transgression and requires an awakening<span class="citation">[cite: 2]</span>. Gandhi amplifies this tension by repeatedly labeling British actions as "evils" and contrasting colonial policy with the "common good of mankind<span class="citation">[cite: 2]</span>." By explicitly defending the "poorest in the land" who bear the brunt of the "most iniquitous" salt tax, Gandhi evokes deep-seated empathy<span class="citation">[cite: 2]</span>. This emotionally charged, morally absolute language transforms the debate from a simple administrative or macroeconomic policy query into a profound judicial fight against a "cruel monopoly<span class="citation">[cite: 2]</span>." This framework forces Irwin to engage on the plane of universal ethics rather than detached colonial governance<span class="citation">[cite: 2]</span>.</p>
+
                     <p>Building upon this moral foundation, Gandhi deploys strict conditional "if-then" clauses to map out clear cause-and-effect trajectories, effectively forcing Irwin into a diplomatic corner<span class="citation">[cite: 2]</span>. Gandhi writes that if Irwin "paves the way for the immediate removal of those evils," then "the way to friendly negotiation will be open<span class="citation">[cite: 2]</span>." Conversely, if Irwin "cannot see [his] way to deal with these evils," then Gandhi "shall proceed... to disregard the provisions of the salt laws<span class="citation">[cite: 2]</span>." <span class="revision-highlight" data-before="The effect of this two-choice situation does not sound as strong as it should be, but it left the burden of responsibility solely on Lord Irwin." data-commentary="The original draft misidentified Gandhi's restraint as weakness. The revision elevates the vocabulary to accurately evaluate how his conditional logic traps his opponent strategically.">This binary framing strips the colonial administration of strategic ambiguity, placing the entire burden of choice and subsequent escalation squarely on Lord Irwin’s shoulders<span class="citation">[cite: 2]</span>.</span> By presenting the upcoming civil disobedience as an inevitable consequence of British inaction rather than an unprovoked assault, Gandhi illustrates the core logic of nonviolent resistance, positioning himself as a profoundly rational actor seeking partnership rather than chaos<span class="citation">[cite: 2]</span>.</p>
+
+                    <p>To further reinforce his authority, Gandhi concludes with a humble, service-oriented tone designed to showcase his character as a principled, selfless statesman<span class="citation">[cite: 2]</span>. He frames his impending defiance as an act of paradoxical stewardship, noting, "I do not seek to harm your people. I want to serve them even as I want to serve my own<span class="citation">[cite: 2]</span>." This unexpected rhetorical pivot destabilizes the traditional dynamic between a colonial subject and an imperial authority; Gandhi treats the British people with deep respect while firmly separating their baseline humanity from the evils of the Crown<span class="citation">[cite: 2]</span>. He solidifies this ethical persona by comparing his public resistance to an intimate familial duty, noting he "employed the same weapon that I have, in all humility, successfully used against the dearest members of my family<span class="citation">[cite: 2]</span>." This masterful blend of ethos and pathos recontextualizes the impending Salt March not as an act of political subversion, but as a disciplined, necessary manifestation of tough love meant to inspire the global community<span class="citation">[cite: 2]</span>.</p>
                 </div>
             </div>
 
             <!-- Tab 2: Argument -->
             <div id="essay2" class="tab-content">
                 <div class="essay-body">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: white;">Unplugging to Connect: The Case for a Temporary Orientation Phone Ban</h3>
-                    <p>Notwithstanding the reality that phones frequently distract students from serious academic pursuits, students understandably value the autonomy of owning and managing their personal devices<span class="citation">[cite: 3]</span>. While it remains true that certain individuals require their phones for pressing family reasons, a temporary institutional ban is crucial for preventing the crystallization of unhealthy digital habits<span class="citation">[cite: 3]</span>. <span class="revision-highlight" data-before="Problems caused by phone could be demonstrated by a myriad of evidences... Without a break from constant digital distractions, students' academic careers could be derailed before they even begin." data-commentary="Corrected the non-count noun usage of 'evidences' to 'empirical data' and updated vocabulary selections (trajectories vs careers) to shift the text into an authoritative academic register.">The structural problems catalyzed by excessive phone usage are demonstrated by a wealth of empirical data... Without a deliberate break from constant digital notifications, students' academic trajectories could be derailed before their first semester even begins<span class="citation">[cite: 3]</span>.</span> Data from the U.S. Internet Bureau indicates that over one-third of adolescents spend more than four hours a day on their devices—a proportion that continues to rise<span class="citation">[cite: 3]</span>. Given that incoming college freshmen fall squarely within this demographic, this statistic represents a serious cause for concern<span class="citation">[cite: 3]</span>. A mandatory two-day phone ban serves as a vital psychological wake-up call, forcing freshmen to confront their screen-time reliance and establish a healthier behavioral baseline<span class="citation">[cite: 3]</span>.</p>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: white;">Unplugging to Connect: The Case for a Temporary Orientation Phone Ban</h3>
+                    <p>Have you ever glanced at your screen-time report and felt an underlying sense of unease regarding the hours spent mindlessly scrolling<span class="citation">[cite: 3]</span>? For many college students, that feeling is an inescapable daily reality<span class="citation">[cite: 3]</span>. In an era where digital devices fiercely dominate human attention, incoming freshmen face the constant temptation of remaining digitally tethered to their phones<span class="citation">[cite: 3]</span>. While some critics worry that a temporary phone ban might counterproductively cut students off from vital family lifelines, a brief two-day restriction at the absolute start of the college experience provides something far more invaluable: it systematically curbs unhealthy digital dependence and actively fosters the deeper, more meaningful relationships that form the foundation of a thriving campus community<span class="citation">[cite: 3]</span>.</p>
+
+                    <p>Notwithstanding the reality that phones frequently distract students from serious academic pursuits, students understandably value the autonomy of owning and managing their personal devices<span class="citation">[cite: 3]</span>. While it remains true that certain individuals require their phones for pressing family reasons, a temporary institutional ban is crucial for preventing the crystallization of unhealthy digital habits<span class="citation">[cite: 3]</span>. <span class="revision-highlight" data-before="Problems caused by phone could be demonstrated by a myriad of evidences... Without a break from constant digital distractions, students' academic careers could be derailed before they even begin." data-commentary="Corrected the non-count noun usage of 'evidences' to 'empirical data' and updated vocabulary selections (trajectories vs careers) to shift the text into an authoritative academic register.">The structural problems catalyzed by excessive phone usage are demonstrated by a wealth of empirical data... Without a deliberate break from constant digital notifications, students' academic trajectories could be derailed before their first semester even begins<span class="citation">[cite: 3]</span>.</span> Data from the U.S. Internet Bureau indicates that over one-third of adolescents spend more than four hours a day on their devices—a proportion that continues to rise<span class="citation">[cite: 3]</span>. Given that incoming college freshmen fall squarely within this demographic, this statistic represents a serious cause for concern<span class="citation">[cite: 3]</span>. University life marks a highly demanding transitional phase where students must balance rigorous coursework, competitive internship searches, and professional networking, all of which demand focused, sustained attention<span class="citation">[cite: 3]</span>. This vulnerability is further substantiated by academic studies, such as research conducted by the National Institutes of Health, which demonstrates a clear correlation between frequent smartphone use and a subsequent decline in academic performance due to diminished attention spans and fragmented study habits<span class="citation">[cite: 3]</span>. A mandatory two-day phone ban serves as a vital psychological wake-up call, forcing freshmen to confront their screen-time reliance and establish a healthier behavioral baseline<span class="citation">[cite: 3]</span>.</p>
+
+                    <p>Beyond direct academic preservation, limiting phone use yields an equally profound social dividend: cultivating authentic human relationships<span class="citation">[cite: 3]</span>. A temporary phone ban naturally establishes a more connected and supportive campus infrastructure<span class="citation">[cite: 3]</span>. When forced to temporarily set aside their digital screens, students are naturally prompted to engage with one another in person, creating foundational bonds that can last a lifetime<span class="citation">[cite: 3]</span>. A classic historical testament to this dynamic is the famed partnership between Steve Jobs and Steve Wozniak, who initially met while Jobs was a drop-in student attending a physics lecture at UC Berkeley<span class="citation">[cite: 3]</span>. Their relationship, entirely built on shared intellectual curiosity and spontaneous, face-to-face collaboration, ultimately birthed the technological revolution we are familiar with today<span class="citation">[cite: 3]</span>. This early, unmediated engagement is absolutely critical for freshmen, who frequently battle feelings of acute isolation in unfamiliar environments<span class="citation">[cite: 3]</span>. By removing digital security blankets, the university encourages students to strike up organic conversations in the dining hall, collaborate enthusiastically on orientation scavenger hunts, or simply sit together and talk<span class="citation">[cite: 3]</span>. Furthermore, a 2023 study published in the World Happiness Report found that forming robust friendships during the first few weeks of college significantly increases a student's likelihood of flourishing while drastically reducing the incidence of depressive symptoms in subsequent years<span class="citation">[cite: 3]</span>.</p>
+
+                    <p>Ultimately, the debate surrounding a temporary freshman phone ban extends far beyond superficial rules or administrative convenience; it is a foundational discussion about the precise academic environment we wish to build and the essential life skills we expect students to master<span class="citation">[cite: 3]</span>. By encouraging immediate face-to-face connection and helping students actively dismantle digital addiction from day one, a brief ban on phones sets the stage for a more focused, engaged, and successful higher education experience<span class="citation">[cite: 3]</span>. Colleges should confidently embrace this policy as a strategic investment<span class="citation">[cite: 3]</span>. By implementing a short, mandatory phone ban during orientation, universities can intentionally guide incoming freshmen toward establishing healthy habits and building the genuine human connections that represent the true hallmarks of a transformative education<span class="citation">[cite: 3]</span>.</p>
                 </div>
             </div>
 
             <!-- Tab 3: Synthesis -->
             <div id="essay3" class="tab-content">
                 <div class="essay-body">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: white;">Reanchoring the Cosmos: Why Domestic Welfare Must Precede Space Exploration</h3>
-                    <p>Mastering a balanced federal budget is crucial for any government tasked with securing public health and ensuring sustainable living environments for its citizens<span class="citation">[cite: 4]</span>. Unfortunately, modern governing bodies have routinely failed to place sufficient emphasis on internal healthcare infrastructure<span class="citation">[cite: 4]</span>. The allocation of United States federal investment provides a stark example of this misalignment: the available financial stream dedicated to comprehensive healthcare initiatives historically accounts for a mere fraction of total national outlays (Source E)<span class="citation">[cite: 4]</span>. Conversely, if the federal government structurally augmented the medical research budget—specifically targeting programs like the National Institutes of Health (NIH)—the public health scenario would look fundamentally different<span class="citation">[cite: 4]</span>. <span class="revision-highlight" data-before="especially the hearth disease and stroke, fell by '40% and 51%' respectively... Just as what Mclean Margaret articulates..." data-commentary="Fixed critical typos ('hearth disease') and properly ordered and capitalized the source author's name, while adding her specific title to strengthen synthesis integration.">Through its supported medical research, the national mortality rates of several fatal illnesses have plummeted, with deaths from heart disease and stroke falling by 40% and 51% respectively... As bioethicist Margaret McLean articulates...<span class="citation">[cite: 4]</span></span> Galvanizing the government to transfer a portion of rocket-building budgets to medical programs reassures citizens that they will not be left to suffer at home due to unaffordable care<span class="citation">[cite: 4]</span>.</p>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem; color: white;">Reanchoring the Cosmos: Why Domestic Welfare Must Precede Space Exploration</h3>
+                    <p>Space exploration has served as a central motif of human technological advancement since the foundational invention of the rocket<span class="citation">[cite: 4]</span>. From Neil Armstrong’s historic first steps on the lunar surface, to the Curiosity Rover traversing the desolate plains of Mars, and the Voyager spacecraft journeying into interstellar space as the farthest human-made object from Earth, our celestial ambitions have been undeniable<span class="citation">[cite: 4]</span>. In an era increasingly plagued by terrestrial crises, however, this cosmic ambition forces a challenging question: can society truly afford to overlook the significant cost of the cosmos<span class="citation">[cite: 4]</span>? Although proponents argue that space exploration projects are necessary to expand our fundamental understanding of the solar system, concerted efforts to reevaluate and optimize the massive annual space budget are essential<span class="citation">[cite: 4]</span>. Prioritizing domestic investment broadens equitable access to crucial healthcare funding and actively protects our own planet's environment from irreversible exploitation<span class="citation">[cite: 4]</span>.</p>
+
+                    <p>Mastering a balanced federal budget is crucial for any government tasked with securing public health and ensuring sustainable living environments for its citizens<span class="citation">[cite: 4]</span>. Unfortunately, modern governing bodies have routinely failed to place sufficient emphasis on internal healthcare infrastructure<span class="citation">[cite: 4]</span>. The allocation of United States federal investment provides a stark example of this misalignment: the available financial stream dedicated to comprehensive healthcare initiatives historically accounts for a mere fraction of total national outlays (Source E)<span class="citation">[cite: 4]</span>. This systemic deficit was vividly mirrored during the initial response to the COVID-19 pandemic, where fragmented laboratory coordination and baseline underfunding contributed to prolonged development timelines for life-saving vaccines<span class="citation">[cite: 4]</span>. Conversely, if the federal government structurally augmented the medical research budget—specifically targeting programs like the National Institutes of Health (NIH)—the public health scenario would look fundamentally different<span class="citation">[cite: 4]</span>. <span class="revision-highlight" data-before="especially the hearth disease and stroke, fell by '40% and 51%' respectively... Just as what Mclean Margaret articulates..." data-commentary="Fixed critical typos ('hearth disease') and properly ordered and capitalized the source author's name, while adding her specific title to strengthen synthesis integration.">Through its supported medical research, the national mortality rates of several fatal illnesses have plummeted, with deaths from heart disease and stroke falling by 40% and 51% respectively... As bioethicist Margaret McLean articulates...<span class="citation">[cite: 4]</span></span> Galvanizing the government to transfer a portion of rocket-building budgets to medical programs reassures citizens that they will not be left to suffer at home due to unaffordable care<span class="citation">[cite: 4]</span>.</p>
+
+                    <p>Skeptics of reducing the space budget frequently argue that prioritizing domestic issues shortchange scientific discovery, suggesting that "the manned space exploration program is absolutely worth the cost" because of its far-reaching benefits for future generations (Source A)<span class="citation">[cite: 4]</span>. While looking back at the Earth from "100,000 miles" above is undeniably an awe-inspiring milestone, these arguments routinely overlook the irreversible ecological degradation inflicted upon our planet in the process<span class="citation">[cite: 4]</span>. Expanding space programs does not merely harvest abstract knowledge; instead, it aggressively consumes and pollutes scarce terrestrial resources<span class="citation">[cite: 4]</span>. As bioethicist Margaret McLean articulates, "despite the depths of space, it is not so limitless as to be able to weather mistreatment or suffer every demand we may place on it" (Source E)<span class="citation">[cite: 4]</span>. By prioritizing aerospace expansion, we risk accelerating soil erosion, disrupting critical migratory routes, and forcing species extinction to extract the fossil fuels required to construct and launch heavy spacecraft<span class="citation">[cite: 4]</span>. Without a fundamental respect for our own planet, we risk compromising the "near" future of humanity simply to touch the "far" future of deep space<span class="citation">[cite: 4]</span>.</p>
+
+                    <p>Neil Armstrong famously declared, "That's one small step for man, one giant leap for mankind."<span class="citation">[cite: 4]</span> Yet, while the mysteries of outer space remain inviting, the realistic threats of underlying health crises and rapid environmental collapse demand that we bring our primary scientific focus back to Earth<span class="citation">[cite: 4]</span>. As history illustrates, the development of human capabilities on our home planet is the prerequisite for both personal fulfillment and true societal advancement<span class="citation">[cite: 4]</span>. To this end, policymakers must work collectively to design a budgetary framework that cultivates scientific innovation within the medical field and fiercely protects our fragile ecosystem<span class="citation">[cite: 4]</span>. Rather than debating whether or not we should reach for the stars, we must focus on fortifying the cradle that secures the next generation's health and home, ensuring we move outward to space only when our own planet is demonstrably safe<span class="citation">[cite: 4]</span>.</p>
                 </div>
             </div>
         </section>
@@ -410,6 +439,7 @@
             document.getElementById('view-' + viewId).classList.add('active');
             document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             event.target.classList.add('active');
+            window.scrollTo(0, 0);
         }
 
         // 3. 3D Tilt Logic
@@ -452,7 +482,7 @@
                 let y = e.clientY + 20;
                 
                 // Keep tooltip on screen
-                if (x + 380 > window.innerWidth) x = e.clientX - 400;
+                if (x + 400 > window.innerWidth) x = e.clientX - 420;
                 if (y + 150 > window.innerHeight) y = e.clientY - 160;
 
                 tooltip.style.left = x + 'px';
